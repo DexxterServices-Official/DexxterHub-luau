@@ -1,3 +1,6 @@
+--- }
+
+
 --[[
 
   ____      ____      __   __    __   __    ______   ____      ____          __  __    __  __    ____
@@ -45,7 +48,7 @@ local coregui=get_service.CoreGui;local players=get_service.Players;local telepo
 --- global variables
 getgenv().cloneref=cloneref or function(...)return...end
 getgenv().queueonteleport=queue_on_teleport or(syn and syn.queue_on_teleport)or(fluxus and fluxus.queue_on_teleport)or queueonteleport
-getgenv().gethui = gethui or gethiddenui or get_hidden_ui or get_hidden_gui or(hiddenui and function()return hiddenui()end)or function()return coregui end
+getgenv().gethui=gethui or gethiddenui or get_hidden_ui or get_hidden_gui or(hiddenui and function()return hiddenui()end)or function()return coregui end
 
 
 --- local variable
@@ -100,7 +103,7 @@ local set_auto_exec=function()
       ..'rvi' ..'c'   ..'e'..'s'     ..'-'..'O'       ..'ff'
       ..'icial/D'   ..'exx'..'ter' ..'Hub'..'-lu'     ..'au'
 
-               ..'@loader/FilesFolder/gateway.lua"))()'
+             ..'@loader/Files%20Folder/gateway.lua"))()'
 
     if queueonteleport and not(
         getgenv()[scriptagautoexec] or _DISABLE_AUTO_EXEC --- or _AIMBOT
