@@ -64,7 +64,7 @@ TODO
 
 <h1 align="center">Get Dexxter Now!</h1>
 
-You can get and check premium plans by following the information from our [premium shop](https://dexxterservices.com/shop).
+You can check the premium plans by following the information from our [premium shop](https://dexxterservices.com/shop).
 
 It contains two options:
 1. Buy directly from our Server and get it's support for you plan
