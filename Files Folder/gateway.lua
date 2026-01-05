@@ -29,7 +29,7 @@ until
 
 -- SETTING
 
-local consoletag=':: dexxter ::'local scriptag='gateway'local scriptagautoexec='G6j1g0sF329K7'local scriptagscript='jT3952_4610sA8'
+local scriptag='gateway'local scriptagautoexec='G6j1g0sF329K7'local scriptagscript='jT3952_4610sA8'
 
 local getrenv=getrenv or syn_getrenv or(syn and syn.getrenv)or getfenv
 local getgenv=getgenv or syn_getgenv or(getfenv and function()return getfenv(2)end)or getrenv or function()return shared end
@@ -39,7 +39,7 @@ local get_service=setmetatable({},{__index=function(self,ServiceName)local Servi
 
 
 --- services
-local coregui=get_service.CoreGui;local players=get_service.Players;local teleportservice=get_service.TeleportService;local runservice=get_service.RunService
+local coregui=get_service.CoreGui;local players=get_service.Players;local teleportservice=get_service.TeleportService;local runservice=get_service.RunService;local httpservice=get_service.HttpService;local LocalizationService=get_service.LocalizationService
 
 
 --- global variables
@@ -56,7 +56,7 @@ local getgenv=getgenv or syn_getgenv or(getfenv and function()return getfenv(2)e
 --- variable
 _HIGH_DEBUG=highdebug or false;_SCRIPT_KEY=script_key or nil
 
-_LANGUAGE=language or nil;_SKIP_LOADING=skip_loading or false;_DISABLE_AUTO_EXEC=disable_auto_exec or false;_DELAY_EXECUTE=delay_execute or 0
+_LANGUAGE=language or false;_SKIP_LOADING=skip_loading or false;_DISABLE_AUTO_EXEC=disable_auto_exec or false;_DELAY_EXECUTE=delay_execute or 0
 
 _WHITESCREEN=whitescreen or false;_BLACKSCREEN=blackscreen or false
 _AUTO_REJOIN=auto_rejoin or false;_STREAMER_MODE=streamer_mode or false
@@ -81,9 +81,9 @@ local make_output_internal=function(text,flagtype,outputtype,includescripttag,co
     if'boolean'==typeof(includescripttag)then else includescripttag=false end
 
     local Output=(
-        flagtype and includescripttag and('%s %s %s: %s'):format(consoletag,flagtype,scriptag,text)
+        flagtype and includescripttag and(':: dexxter :: %s %s: %s'):format(flagtype,scriptag,text)
     )
-        or ('%s %s'):format(consoletag,text)
+        or (':: dexxter :: %s'):format(text)
 
     if considerdebug and _HIGH_DEBUG then outputtype(Output)end
 end
@@ -111,18 +111,18 @@ local set_auto_exec=function()
             --- if _SCRIPT_KEY or _PREMIUM then
             if _SCRIPT_KEY then
                 local queuecode=(
-                    '_COME_TELEPORT=true;highdebug=%s;language=%s;skip_loading=%s;script_key=%s;whitescreen=%s;blackscreen=%s;auto_rejoin=%s;streamer_mode=%s;aimbot=%s;premium=%s;one_click=%s;'..c
+                    '_COME_TELEPORT=true;highdebug=%s;language=%s;skip_loading=%s;script_key="%s";whitescreen=%s;blackscreen=%s;auto_rejoin=%s;streamer_mode=%s;aimbot=%s;premium=%s;one_click=%s;'
                 ):format(
-                    tostring(_HIGH_DEBUG),tostring(_LANGUAGE),tostring(_SKIP_LOADING),tostring(_SCRIPT_KEY),tostring(_WHITESCREEN),tostring(_BLACKSCREEN),tostring(_AUTO_REJOIN),tostring(_STREAMER_MODE),tostring(_AIMBOT),tostring(_PREMIUM),tostring(_ONE_CLICK)
-                )
+                    tostring(_HIGH_DEBUG),tostring((_LANGUAGE and('"%s"'):format(_LANGUAGE))or _LANGUAGE),tostring(_SKIP_LOADING),tostring(_SCRIPT_KEY),tostring(_WHITESCREEN),tostring(_BLACKSCREEN),tostring(_AUTO_REJOIN),tostring(_STREAMER_MODE),tostring(_AIMBOT),tostring(_PREMIUM),tostring(_ONE_CLICK)
+                )..c
                 queueonteleport(queuecode)
 
             else
                 local queuecode=(
-                    '_COME_TELEPORT=true;highdebug=%s;language=%s;skip_loading=%s;whitescreen=%s;blackscreen=%s;auto_rejoin=%s;streamer_mode=%s;aimbot=%s;premium=%s;one_click=%s;'..c
+                    '_COME_TELEPORT=true;highdebug=%s;language=%s;skip_loading=%s;whitescreen=%s;blackscreen=%s;auto_rejoin=%s;streamer_mode=%s;aimbot=%s;premium=%s;one_click=%s;'
                 ):format(
-                    tostring(_HIGH_DEBUG),tostring(_LANGUAGE),tostring(_SKIP_LOADING),tostring(_WHITESCREEN),tostring(_BLACKSCREEN),tostring(_AUTO_REJOIN),tostring(_STREAMER_MODE),tostring(_AIMBOT),tostring(_PREMIUM),tostring(_ONE_CLICK)
-                )
+                    tostring(_HIGH_DEBUG),tostring((_LANGUAGE and('"%s"'):format(_LANGUAGE))or _LANGUAGE),tostring(_SKIP_LOADING),tostring(_WHITESCREEN),tostring(_BLACKSCREEN),tostring(_AUTO_REJOIN),tostring(_STREAMER_MODE),tostring(_AIMBOT),tostring(_PREMIUM),tostring(_ONE_CLICK)
+                )..c
                 queueonteleport(queuecode)
             end
             getgenv()[scriptagautoexec]=true
@@ -155,7 +155,10 @@ end end
 
 --- LOAD
 
-local __c={
+local __c;__c={
+    ['__game1list']=function()
+        return{126509999114328;4639625707;17625359962;70876832253163;14708751132;221718525;6490016198;}
+    end;
     ['__game1']=function()
         local g=Game.PlaceId
         if g==126509999114328 then return'v4/loaders/3c8e6f7487d098d1a5f67eb6f56b0978.lua' --- 99 nights
@@ -169,7 +172,6 @@ local __c={
         end
         return nil
     end;
-
     --[=[
     ['__game2']=function()
         local g=Game.PlaceId
@@ -179,10 +181,19 @@ local __c={
         return nil
     end;
     ]=]
+    
+    ['__alt']=function()
+        local g=Game.PlaceId
+        if g==116495829188952 then return'https://cdn.jsdelivr.net/gh/DexxterServices-Official/DexxterHub-luau@scripts/Files%20Folder/Alt%20Scripts%20Folder/116495829188952.lua'
+        elseif g==79546208627805 then return'https://cdn.jsdelivr.net/gh/DexxterServices-Official/DexxterHub-luau@scripts/Files%20Folder/Alt%20Scripts%20Folder/79546208627805.lua'
+        elseif table.find({117398147513099;71874690745115;},g)then return'v4/loaders/a605d0b5e913bf65e6a2bc10668607c2.lua'
+        end
+    end;
+
     --[=[
     ['__premium']=function()
         local g=Game.PlaceId
-        if g==126509999114328 then return'v4/loaders/dff70f964e86a2a045d0a239471d0f79.lua' --- 99 nights
+        if g==126509999114328 then return'v4/loaders/???.lua' --- 99 nights
         --- else return'v4/loaders/???.lua' -- universal
         end
         return nil
@@ -224,6 +235,7 @@ if not getgenv()[scriptagscript]then
     local client,teleport=players.LocalPlayer,teleportservice.Teleport
     local currentcamera=Workspace.CurrentCamera
 
+    
     --- anti gameplay paused
     do
         make_output_internal('setting up anti-gpp','!~',2,true,true)
@@ -236,6 +248,7 @@ if not getgenv()[scriptagscript]then
         end)
 
     end
+
 
     --- auto rejoin
     do if _AUTO_REJOIN or _ONE_CLICK then
@@ -253,6 +266,7 @@ if not getgenv()[scriptagscript]then
         end)
 
     end end
+
 
     --- streamer mode
     do if _STREAMER_MODE then
@@ -287,12 +301,15 @@ if not getgenv()[scriptagscript]then
                 for i=1,#allspace do modifyinstancefunction(allspace[i])end;Game.DescendantAdded:Connect(modifyinstancefunction)
             end
 
-            protect_message(client.Name,'[Protected by Dexxter Hub]')
-            protect_message(client.DisplayName,'[Protected by Dexxter Hub]')
+            local LanguagesTable={['en-us']='Streamer Mode';['fr-fr']='Streamer Mode';['es-es']='Modo Streamer';['pt-br']='Modo Streamer';}local ClientLanguage=LanguagesTable[tostring(_LANGUAGE)or LocalizationService.RobloxLocaleId]or LanguagesTable['en-us']
+            
+            protect_message(client.Name,ClientLanguage)
+            protect_message(client.DisplayName,ClientLanguage)
 
         end,function(Err)make_output_internal(('streamer mode: error: %s'):format(Err),'?~',1,true,true)end)
 
     end end
+
 
     --- whit escreen & black screen
     do
@@ -321,6 +338,7 @@ if not getgenv()[scriptagscript]then
 
     end
 
+
     --- anti afk
     do
         make_output_internal('setting up anti-afk','!~',2,true,true)
@@ -340,17 +358,27 @@ if not getgenv()[scriptagscript]then
 
 else make_output_internal('add-on functions already set, skipping.','!~',1,true,true)end
 
+
 --- starting
 do
     make_output_internal('starting','!~',1,true,true)
 
-    local tar,wdc=nil,__c['__nokey']()
+    if _SCRIPT_KEY then
+        local _S, Data = pcall(httpservice.JSONEncode, httpservice, { script_key = _SCRIPT_KEY; })
+        writefile('Dexxter Scripts HUB/tempfile-gateway.json', (_S and 'string' == typeof(Data) and Data) or '{}')
+    end
+
+    local tar,wdc,npg=nil,__c['__nokey'](),__c['__alt']()
+
     loader=__c['__game1']()---loader=__c['__game1']()or __c['__game2']()
+    supported_games=__c['__game1list']()
+    language = _LANGUAGE
 
     --- if _AIMBOT then __c['__load'](' ??? ')
     --- elseif _PREMIUM then tar=__c['__premium']()__c['__load'](('https://api.luarmor.net/files/%s'):format(tar))
     --- elseif _ONE_CLICK then tar=__c['__oneclick']()__c['__load'](('https://api.luarmor.net/files/%s'):format(tar))
-    if wdc and typeof(wdc)=='string'then __c['__load'](('https://api.luarmor.net/files/%s'):format(wdc))
+    if typeof(wdc)=='string'then __c['__load'](('https://api.luarmor.net/files/%s'):format(wdc))
+    elseif 'string'==typeof(npg)then __c['__load'](npg)
 
     else if _SCRIPT_KEY then
         __c['__load'](('https://api.luarmor.net/files/%s'):format(loader))
@@ -358,5 +386,4 @@ do
     else
         __c['__load']('https://cdn.jsdelivr.net/gh/DexxterGWM/DexxterScripts-lua_u@loader/Files%20Folder/ScriptBuild.lua')
     end end
-
 end
