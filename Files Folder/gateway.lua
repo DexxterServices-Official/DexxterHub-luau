@@ -10,7 +10,7 @@
 
 DEXXTER HUB  -  @MAIN EDITION SCRIPT: GATEWAY
 
-Made by Dexxter Services  -  https://discord.gg/WyXpAxGnTT | dexxterservices.com
+Made by Dexxter Services  -  https://discord.gg/WyXpAxGnTT  |  dexxterservices.com
 Modification of the script, including attempting to bypass or crack the script for any reason is not allowed.
 
 Copyright © 2026 Dexxter Services. All Rights Reserved.
@@ -163,7 +163,7 @@ local __c;__c={
     ['__game1']=function()
         local g=Game.PlaceId
         if g==126509999114328 then return'v4/loaders/3c8e6f7487d098d1a5f67eb6f56b0978.lua' --- 99 nights
-        elseif g==4639625707 then return'v4/loaders/955b4f6de376f0fbc2fe3387d09d62a7.lua' --- war tycoon
+        elseif g==4639625707 then return'v4/loaders/172cbfd49ad472a381b24b2d2e131784.lua' --- war tycoon
         elseif g==17625359962 then return'v4/loaders/a605d0b5e913bf65e6a2bc10668607c2.lua' --- rivals
         elseif g==70876832253163 then return'v4/loaders/abb2a360fc6aeb2fa200a9414bbb92a4.lua' --- dead rails
         elseif g==14708751132 then return'v4/loaders/02c26ee865a64ce37405976d2fffac90.lua' --- untitled gym game
@@ -313,31 +313,29 @@ if not getgenv()[scriptagscript]then
 
 
     --- whit escreen & black screen
-    do
+    do if _WHITESCREEN or _BLACKSCREEN then
         make_output_internal('setting up w/b screen','!~',2,true,true)
 
         local set3drenderingenabled=runservice.Set3dRenderingEnabled
 
         xpcall(function()
-            if _WHITESCREEN or _BLACKSCREEN then
-                local setblackscreen=function()end;local Blackscreen,Blackscreen2
+            local setblackscreen=function()end;local Blackscreen,Blackscreen2
 
-                if _BLACKSCREEN then
-                    Blackscreen,Blackscreen2=Instance.new('ScreenGui'),Instance.new('Frame')
+            if _BLACKSCREEN then
+                Blackscreen,Blackscreen2=Instance.new('ScreenGui'),Instance.new('Frame')
 
-                    Blackscreen2.Size=UDim2.new(500,0,500,0)Blackscreen2.AnchorPoint=Vector2.new(0.5,0.5)Blackscreen2.Position=UDim2.new(0.5,0,0.5,0)Blackscreen2.BackgroundTransparency=0;Blackscreen2.BackgroundColor3=Color3.new(0,0,0)Blackscreen2.Visible=false
-                    Blackscreen.Name='k9a_R7U5C86'Blackscreen.Parent=get_service.CoreGui;Blackscreen2.Name='k9a_R7U5C86'Blackscreen2.Parent=Blackscreen
+                Blackscreen2.Size=UDim2.new(500,0,500,0)Blackscreen2.AnchorPoint=Vector2.new(0.5,0.5)Blackscreen2.Position=UDim2.new(0.5,0,0.5,0)Blackscreen2.BackgroundTransparency=0;Blackscreen2.BackgroundColor3=Color3.new(0,0,0)Blackscreen2.Visible=false
+                Blackscreen.Name='k9a_R7U5C86'Blackscreen.Parent=get_service.CoreGui;Blackscreen2.Name='k9a_R7U5C86'Blackscreen2.Parent=Blackscreen
 
-                    setblackscreen=function(boolean)Blackscreen2.Visible=boolean end
-                end
-
-                local Connection;Connection=get_service.UserInputService.WindowFocusReleased:Connect(function()if getgenv()[scriptagscript]then set3drenderingenabled(runservice,false)setblackscreen(true)else Connection:Disconnect()end end)
-                local Connection;Connection=get_service.UserInputService.WindowFocused:Connect(function()if getgenv()[scriptagscript]then set3drenderingenabled(runservice,true)setblackscreen(false)else Connection:Disconnect()end end)
+                setblackscreen=function(boolean)Blackscreen2.Visible=boolean end
             end
+
+            local Connection;Connection=get_service.UserInputService.WindowFocusReleased:Connect(function()if getgenv()[scriptagscript]then set3drenderingenabled(runservice,false)setblackscreen(true)else Connection:Disconnect()end end)
+            local Connection;Connection=get_service.UserInputService.WindowFocused:Connect(function()if getgenv()[scriptagscript]then set3drenderingenabled(runservice,true)setblackscreen(false)else Connection:Disconnect()end end)
 
         end,function(Err)make_output_internal(('w/b screen: error: %s'):format(Err),'?~',1,true,true)end)
 
-    end
+    end end
 
 
     --- anti afk
