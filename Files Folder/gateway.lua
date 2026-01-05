@@ -163,7 +163,7 @@ local __c;__c={
     ['__game1']=function()
         local g=Game.PlaceId
         if g==126509999114328 then return'v4/loaders/3c8e6f7487d098d1a5f67eb6f56b0978.lua' --- 99 nights
-        elseif g==4639625707 then return'v4/loaders/955b4f6de376f0fbc2fe3387d09d62a7.lua' --- war tycoon
+        elseif g==4639625707 then return'v4/loaders/172cbfd49ad472a381b24b2d2e131784.lua' --- war tycoon
         elseif g==17625359962 then return'v4/loaders/a605d0b5e913bf65e6a2bc10668607c2.lua' --- rivals
         elseif g==70876832253163 then return'v4/loaders/abb2a360fc6aeb2fa200a9414bbb92a4.lua' --- dead rails
         elseif g==14708751132 then return'v4/loaders/02c26ee865a64ce37405976d2fffac90.lua' --- untitled gym game
