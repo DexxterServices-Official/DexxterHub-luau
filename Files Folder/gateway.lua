@@ -46,6 +46,7 @@ local coregui=get_service.CoreGui;local players=get_service.Players;local telepo
 getgenv().cloneref=cloneref or function(...)return...end
 getgenv().queueonteleport=queue_on_teleport or(syn and syn.queue_on_teleport)or(fluxus and fluxus.queue_on_teleport)or queueonteleport
 getgenv().gethui=gethui or gethiddenui or get_hidden_ui or get_hidden_gui or(hiddenui and function()return hiddenui()end)or function()return coregui end
+getgenv().writefile = writefile or write or write_file
 
 
 --- local variable
