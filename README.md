@@ -25,9 +25,6 @@ Currently, it supports **multi-languages** inside of the scripts, being:
 - **Undetected Execution**
   - Advanced anti-detection technology keeps your account safe and secure.
 
-- **Fast Updates**
-  - Regular updates to ensure compatibility with latest Roblox versions.
-
 - **Premium Support**
   - Get instant help from our dedicated support team available around the clock.
 
