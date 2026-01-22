@@ -10,7 +10,7 @@
 
 DEXXTER HUB  -  @MAIN EDITION SCRIPT: GATEWAY
 
-Made by Dexxter Services  -  https://discord.gg/WyXpAxGnTT  |  dexxterservices.com
+Made by Dexxter Services  -  https://discord.gg/WyXpAxGnTT  |  dexxterservices.pages.dev
 Modification of the script, including attempting to bypass or crack the script for any reason is not allowed.
 
 Copyright © 2026 Dexxter Services. All Rights Reserved.
@@ -37,9 +37,11 @@ local getgenv=getgenv or syn_getgenv or(getfenv and function()return getfenv(2)e
 local GetService=Game.GetService
 local get_service=setmetatable({},{__index=function(self,ServiceName)local Service=cloneref(GetService(Game,ServiceName))rawset(self,ServiceName,Service)return Service end})
 
+getgenv()[scriptagscript]=getgenv()[scriptagscript]or{}
+
 
 --- services
-local coregui=get_service.CoreGui;local players=get_service.Players;local teleportservice=get_service.TeleportService;local runservice=get_service.RunService;local httpservice=get_service.HttpService;local LocalizationService=get_service.LocalizationService
+local coregui,players,teleportservice,runservice,httpservice,LocalizationService,guiservice=get_service.CoreGui,get_service.Players,get_service.TeleportService,get_service.RunService,get_service.HttpService,get_service.LocalizationService,get_service.GuiService
 
 
 --- global variables
@@ -49,14 +51,10 @@ getgenv().gethui=gethui or gethiddenui or get_hidden_ui or get_hidden_gui or(hid
 getgenv().writefile = writefile or write or write_file
 
 
---- local variable
-local getrenv=getrenv or syn_getrenv or(syn and syn.getrenv)or getfenv
-local getgenv=getgenv or syn_getgenv or(getfenv and function()return getfenv(2)end)or getrenv or function()return shared end
-
-
 --- variable
 _HIGH_DEBUG=highdebug or false;_SCRIPT_KEY=script_key or nil
 
+--- TODO TEST _DISABLE_AUTO_EXEC
 _LANGUAGE=language or false;_SKIP_LOADING=skip_loading or false;_DISABLE_AUTO_EXEC=disable_auto_exec or false;_DELAY_EXECUTE=delay_execute or 0
 
 _WHITESCREEN=whitescreen or false;_BLACKSCREEN=blackscreen or false
@@ -76,7 +74,7 @@ local make_output_internal=function(text,flagtype,outputtype,includescripttag,co
     local flagtype=('string'==typeof(flagtype)and flagtype)or nil
     local outputtype=(1==outputtype and warn)or(2==outputtype and print)or nil
 
-    if not(text or outputtype)then return end
+    if not text or not outputtype then return end
 
     if'boolean'==typeof(considerdebug)then else considerdebug=false end
     if'boolean'==typeof(includescripttag)then else includescripttag=false end
@@ -103,8 +101,9 @@ local set_auto_exec=function()
 
              ..'@loader/Files%20Folder/gateway.lua"))()'
 
-    if queueonteleport and not(
-        getgenv()[scriptagautoexec] or _DISABLE_AUTO_EXEC --- or _AIMBOT
+    if queueonteleport and(
+            not getgenv()[scriptagautoexec]
+            and not _DISABLE_AUTO_EXEC --- or _AIMBOT
     )then
         xpcall(function()
             make_output_internal('set auto execute','!~',1,true,true)
@@ -112,17 +111,17 @@ local set_auto_exec=function()
             --- if _SCRIPT_KEY or _PREMIUM then
             if _SCRIPT_KEY then
                 local queuecode=(
-                    '_COME_TELEPORT=true;highdebug=%s;language=%s;skip_loading=%s;script_key="%s";whitescreen=%s;blackscreen=%s;auto_rejoin=%s;streamer_mode=%s;aimbot=%s;premium=%s;one_click=%s;'
+                    '_COME_TELEPORT=true;highdebug=%s;language=%s;skip_loading=%s;disable_auto_exec=%s;script_key="%s";whitescreen=%s;blackscreen=%s;auto_rejoin=%s;streamer_mode=%s;aimbot=%s;premium=%s;one_click=%s;'
                 ):format(
-                    tostring(_HIGH_DEBUG),tostring((_LANGUAGE and('"%s"'):format(_LANGUAGE))or _LANGUAGE),tostring(_SKIP_LOADING),tostring(_SCRIPT_KEY),tostring(_WHITESCREEN),tostring(_BLACKSCREEN),tostring(_AUTO_REJOIN),tostring(_STREAMER_MODE),tostring(_AIMBOT),tostring(_PREMIUM),tostring(_ONE_CLICK)
+                    tostring(_HIGH_DEBUG),tostring((_LANGUAGE and('"%s"'):format(_LANGUAGE))or _LANGUAGE),tostring(_SKIP_LOADING),tostring(_DISABLE_AUTO_EXEC),tostring(_SCRIPT_KEY),tostring(_WHITESCREEN),tostring(_BLACKSCREEN),tostring(_AUTO_REJOIN),tostring(_STREAMER_MODE),tostring(_AIMBOT),tostring(_PREMIUM),tostring(_ONE_CLICK)
                 )..c
                 queueonteleport(queuecode)
 
             else
                 local queuecode=(
-                    '_COME_TELEPORT=true;highdebug=%s;language=%s;skip_loading=%s;whitescreen=%s;blackscreen=%s;auto_rejoin=%s;streamer_mode=%s;aimbot=%s;premium=%s;one_click=%s;'
+                    '_COME_TELEPORT=true;highdebug=%s;language=%s;skip_loading=%s;disable_auto_exec=%s;whitescreen=%s;blackscreen=%s;auto_rejoin=%s;streamer_mode=%s;aimbot=%s;premium=%s;one_click=%s;'
                 ):format(
-                    tostring(_HIGH_DEBUG),tostring((_LANGUAGE and('"%s"'):format(_LANGUAGE))or _LANGUAGE),tostring(_SKIP_LOADING),tostring(_WHITESCREEN),tostring(_BLACKSCREEN),tostring(_AUTO_REJOIN),tostring(_STREAMER_MODE),tostring(_AIMBOT),tostring(_PREMIUM),tostring(_ONE_CLICK)
+                    tostring(_HIGH_DEBUG),tostring((_LANGUAGE and('"%s"'):format(_LANGUAGE))or _LANGUAGE),tostring(_SKIP_LOADING),tostring(_DISABLE_AUTO_EXEC),tostring(_WHITESCREEN),tostring(_BLACKSCREEN),tostring(_AUTO_REJOIN),tostring(_STREAMER_MODE),tostring(_AIMBOT),tostring(_PREMIUM),tostring(_ONE_CLICK)
                 )..c
                 queueonteleport(queuecode)
             end
@@ -231,7 +230,7 @@ local __c;__c={
 
 -- SETTING
 
-if not getgenv()[scriptagscript]then
+if not getgenv()[scriptagscript].__set then
     make_output_internal('setting up add-on functions','!~',1,true,true)
 
     local client,teleport=players.LocalPlayer,teleportservice.Teleport
@@ -253,18 +252,24 @@ if not getgenv()[scriptagscript]then
 
 
     --- auto rejoin
-    do if _AUTO_REJOIN or _ONE_CLICK then
+    do if (_AUTO_REJOIN or _ONE_CLICK) and not getgenv()[scriptagscript].__autorj then
+        getgenv()[scriptagscript].__autorj=true
         make_output_internal('setting up auto-rejoin','!~',2,true,true)
 
         task.spawn(function()
-            while getgenv()[scriptagscript]do task.wait()
-                xpcall(function()
-                    get_service.CoreGui.RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(Instance)
-                        if Instance.Name=='ErrorPrompt'and Game.FindFirstChild(Instance,'MessageArea')and Game.FindFirstChild(Instance.MessageArea,'ErrorFrame')then teleport(teleportservice,Game.PlaceId,client)end
-                    end)
+            guiservice.ErrorMessageChanged:Connect(function()
+                task.defer(xpcall,function()
+                    client.Kick(client,('\n:: %s :: %s'):format(scriptag,'auto rejoin server: rejoining..'))
+                    task.wait()
+                    --- teleport(teleportservice,Game.PlaceId,client)
+                    if 1>=#players.GetPlayers(players) then
+                        teleportservice.TeleportTo(teleportservice,Game.PlaceId,client)
+                    else
+                        teleportservice.TeleportToPlaceInstance(teleportservice,Game.PlaceId,Game.JobId,client)
+                    end
 
-                end, function(Err)make_output_internal(('auto rejoin: error: %s'):format(Err),'?~',1,true,true)end)
-            end
+                end,function(Err)make_output_internal(('auto rejoin: error: %s'):format(Err),'?~',1,true,true)end)
+            end)
         end)
 
     end end
@@ -331,8 +336,8 @@ if not getgenv()[scriptagscript]then
                 setblackscreen=function(boolean)Blackscreen2.Visible=boolean end
             end
 
-            local Connection;Connection=get_service.UserInputService.WindowFocusReleased:Connect(function()if getgenv()[scriptagscript]then set3drenderingenabled(runservice,false)setblackscreen(true)else Connection:Disconnect()end end)
-            local Connection;Connection=get_service.UserInputService.WindowFocused:Connect(function()if getgenv()[scriptagscript]then set3drenderingenabled(runservice,true)setblackscreen(false)else Connection:Disconnect()end end)
+            local Connection1;Connection1=get_service.UserInputService.WindowFocusReleased:Connect(function()if getgenv()[scriptagscript].__set then set3drenderingenabled(runservice,false)setblackscreen(true)else Connection1:Disconnect()end end)
+            local Connection2;Connection2=get_service.UserInputService.WindowFocused:Connect(function()if getgenv()[scriptagscript].__set then set3drenderingenabled(runservice,true)setblackscreen(false)else Connection2:Disconnect()end end)
 
         end,function(Err)make_output_internal(('w/b screen: error: %s'):format(Err),'?~',1,true,true)end)
 
@@ -340,7 +345,8 @@ if not getgenv()[scriptagscript]then
 
 
     --- anti afk
-    do
+    do if not getgenv()[scriptagscript].__antiafk then
+        getgenv()[scriptagscript].__antiafk = true
         make_output_internal('setting up anti-afk','!~',2,true,true)
 
         local virtualuser=get_service.VirtualUser
@@ -353,8 +359,8 @@ if not getgenv()[scriptagscript]then
             end,function(Err)make_output_internal(('anti-afk: error: %s'):format(Err),'?~',1,true,true)end)
         end)
 
-    end
-    getgenv()[scriptagscript]=true
+    end end
+    getgenv()[scriptagscript].__set=true
 
 else make_output_internal('add-on functions already set, skipping.','!~',1,true,true)end
 
