@@ -1,5 +1,5 @@
 <p align="center">
-  <img src='https://raw.githubusercontent.com/DexxterServices-Official/DexxterHub-luau/assets/Files%20Folder/Thumbnails%20Folder/DexxterBanner-MINIFIED.png' alt= 'Dexxter banner image' style='width:100%; height:auto;'/><br/>
+  <img src='https://raw.githubusercontent.com/DexxterServices-Official/DexxterHub-luau/assets/Files%20Folder/Logos/DexxterBanner-MINIFIED.png' alt= 'Dexxter banner image' style='width:100%; height:auto;'/><br/>
 </p>
 <br/>
 
