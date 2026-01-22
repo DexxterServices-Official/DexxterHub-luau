@@ -1,5 +1,22 @@
-<h1 align="center">Dexxter Hub</h1>
-<div align="center">Your advanced premium script — undetectable, stable, and updated daily</div>
+<p align="center">
+  <img src='https://raw.githubusercontent.com/DexxterServices-Official/DexxterHub-luau/assets/Files%20Folder/Thumbnails%20Folder/DexxterBanner-MINIFIED.png' alt= 'Dexxter banner image' style='width:100%; height:auto;'/><br/>
+</p>
+<br/>
+
+<h1 align="center">
+
+Dexxter Hub </br></br>
+Your advanced Premium Hub — undetectable, stable, and updated daily
+
+</h1>
+
+<h2 align='center'> 
+
+Join our [Discord Server](https://discord.gg/WyXpAxGnTT)! <br/><br/>
+
+![Key System](https://img.shields.io/badge/Key_System-darkred) ![Universal](https://img.shields.io/badge/Universal-lightblue) ![Fast](https://img.shields.io/badge/Fast-blue) ![Organized](https://img.shields.io/badge/Organized-blue) ![Secure](https://img.shields.io/badge/Secure-darkgreen) ![Optimized](https://img.shields.io/badge/Optimized-darkgreen) ![Simple](https://img.shields.io/badge/Simple-yellow) ![Mobile Friendly](https://img.shields.io/badge/Mobile_Friendly-gray) ![Trusted](https://img.shields.io/badge/Trusted-yellow)
+
+</h2>
 
 <div>&nbsp;</div>
 
@@ -61,14 +78,48 @@ TODO
 
 <h1 align="center">Get Dexxter Now!</h1>
 
-You can check the premium plans by following the information from our [premium shop](https://dexxterservices.com/shop).
+You can check the premium plans by following the information from our [premium shop](https://discord.gg/WyXpAxGnTT).
 
 It contains two options:
-1. Buy directly from our Server and get it's support for you plan
+1. Buy directly from our Moderators and get it's support for you plan
 2. Get from one of our trusted resellers list
 
 <div>&nbsp;</div>
 
 <h1 align="center">Supported Executors</h1>
 
-Please, refer to our supported [executors list](https://dexxterservices.com/executor) from our website for it, always updated.
+Please, refer to our supported [executors list](https://discord.gg/WyXpAxGnTT) for it, always updated. </br>
+
+```md
+* Platform: `Roblox`
+  - Can only be used with Roblox executors
+  - Key-access based Exploit
+  - Tested on Desktop and Mobile devices
+
+* Multi-language support, including:
+  - en-us, fr-fr, es-es, and pt-br
+
+* Key Links:
+  - https://ads.luarmor.net/  -  For scripts with high demand level of global executions
+  - https://pandadevelopment.net/  -  For scripts with lowered level of global executions
+```
+<br/>
+
+### <div align='center'>Last Changelog: 01/22/2026 (MM/DD/YYYY)</div>
+
+<!--
+              (`.          ,-,
+              ` `.     ,;' /
+               ` .  ,'/ .'
+                 `. X /.'
+       .-;--''--.._` ` ('
+     .'           /    `
+    ,          ` '    Q '
+    ,         ,   `._    \
+ ,.|         '     `-.;_'
+ :  . `   ;   `  ` --,.._;
+  ' `     ,  )   .'
+     `._  , '   /_
+        ; ,''-,;' ``-
+         ``-..__``--`
+-->
