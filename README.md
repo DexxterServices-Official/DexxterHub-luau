@@ -5,8 +5,7 @@
 
 <h1 align="center">
 
-Dexxter Hub </br></br>
-Your advanced Premium Hub — undetectable, stable, and updated daily
+Dexxter Hub — undetectable, stable, and updated daily </br></br>
 
 </h1>
 
